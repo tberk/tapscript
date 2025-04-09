@@ -70,14 +70,17 @@ export function encodeWord (
 
   // If the buffer contains a single value:
   if (buff.length === 1) {
+    // NOTE: remove opcode conversion for values 1–16    
     // If value is between 1-16:
-    if (buff[0] !== 0 && buff[0] <= 16) {
+    //if (buff[0] !== 0 && buff[0] <= 16) {
       // Convert values 1-16 into opcode values.
-      buff[0] += 0x50
+      //buff[0] += 0x50
       // Return buffered code without varint.
-      return buff
+      //return buff    
+    //} else 
+    
     // If the value is between 129-255:
-    } else if (buff[0] > 128 && buff[0] <= 255) {
+    if (buff[0] > 128 && buff[0] <= 255) {
       // Value must be padded with a zero byte.
       buff = new Uint8Array([ buff[0], 0 ])
     }
